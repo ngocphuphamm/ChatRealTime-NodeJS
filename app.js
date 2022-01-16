@@ -30,9 +30,14 @@ io.on("connection",function(socket)
       // gửi cho  riêng user thất bại k
       socket.emit("server-send-fail")
     }
-    else
+    else // server trả về thành công
     {
-
+      mangUsers.push(data); 
+      socket.username = data; 
+      socket.emit("server-send-success",data);
+      console.log(mangUsers);
+      // phát danh sách dữ liệu đang online  cho người dùng đang trong boxchat
+      io.sockets.emit("server-send-listuser",mangUsers)
     }
   })
 })
