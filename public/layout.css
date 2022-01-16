@@ -1,0 +1,62 @@
+body{background-color: aqua; }
+
+#wrapper{width: 1000px;
+     
+        }
+
+#btnRegister{
+    width: 100px;
+    height: 30px;
+    margin-left: 44px;
+    background-color: aliceblue;
+}
+
+#chatForm
+{
+    margin-top: 10px;
+}
+#btnLogOut{
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+
+    background-color: aliceblue;
+}
+
+
+
+#left,#right {
+    min-height: 300px;
+}
+#left{
+    width: 30%;
+    float: left;
+    border : solid 1px black;
+    background-color: blanchedalmond;
+}
+#right{
+    width: 70%;
+    float: right;
+    background-color: aquamarine;
+}
+
+#boxTitle{
+    border: solid 1px black; 
+    padding: 5px; 
+    text-align: center;
+}
+
+#boxContent { 
+
+    padding : 10px;
+    text-align: center;
+    font-weight: bold;
+}
+#sayHello{
+    text-align: right;
+}
+
+#listMessages{
+    height: 300px;
+    background-color: rgb(175, 220, 238);
+}
