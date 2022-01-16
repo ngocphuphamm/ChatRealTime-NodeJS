@@ -6,11 +6,38 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { Socket } = require('socket.io');
 
 var app = express();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3000);
+
+
+////////SOCKET//// 
+var mangUsers = ["ngocphu"] ; 
+
+io.on("connection",function(socket)
+{
+  console.log("có người kết nối với id : " + " " + socket.id )
+
+  socket.on("client-send-Username",function(data)
+  {
+    console.log(data);
+    // nếu dữ liệu trùng với mảng thì chứng tỏ tên này có người dùng 
+    if(mangUsers.indexOf(data)>=0)
+    {
+      // gửi cho  riêng user thất bại k
+      socket.emit("server-send-fail")
+    }
+    else
+    {
+
+    }
+  })
+})
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
