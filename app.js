@@ -47,6 +47,11 @@ io.on("connection",function(socket)
     socket.broadcast.emit("server-send-listuser",mangUsers);
     console.log(mangUsers);
   })
+  
+  socket.on("user-send-mes",function(data)
+  {
+    io.sockets.emit("server-send-mes",{username : socket.username , content : data})
+  })
 })
 
 

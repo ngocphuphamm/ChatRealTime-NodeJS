@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     socket.on("server-send-listuser",function(data)
     {
-        $("boxContent").html();
+        $("#boxContent").html("");
         data.forEach(function(el)
         {
             $("#boxContent").append("<div class='user'>" + el + "</div>");
@@ -40,6 +40,11 @@ $(document).ready(function () {
 
     $("#btnSendMessages").click(function()
     {
-       socket.emit("user-send-mes",$("txtMessages").val())
+       socket.emit("user-send-mes",$("#txtMessages").val())
+    })
+
+    socket.on("server-send-mes",function(data)
+    {
+        $("#listMessages").append("<div class='ms'>" + data.username+ ":" + data.content +  "</div>")
     })
 });
