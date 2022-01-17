@@ -62,8 +62,8 @@ io.on("connection",function(socket)
 
   socket.on("user-keyboard-out",function()
   {
-    console.log(socket.username + "ngưng nhập ");
-    
+
+    io.sockets.emit("user-action-keyboard-out")
   })
 })
 
