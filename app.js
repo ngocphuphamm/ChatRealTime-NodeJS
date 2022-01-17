@@ -15,7 +15,7 @@ server.listen(3000);
 
 
 ////////SOCKET//// 
-var mangUsers = ["ngocphu"] ; 
+var mangUsers = [] ; 
 
 io.on("connection",function(socket)
 {
@@ -39,6 +39,13 @@ io.on("connection",function(socket)
       // phát danh sách dữ liệu đang online  cho người dùng đang trong boxchat
       io.sockets.emit("server-send-listuser",mangUsers)
     }
+  })
+  socket.on("logout",function()
+  {
+    console.log("đã vào")
+    mangUsers.splice(mangUsers.indexOf(socket.username),1)
+    socket.broadcast.emit("server-send-listuser",mangUsers);
+    console.log(mangUsers);
   })
 })
 
