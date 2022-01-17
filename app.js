@@ -40,6 +40,7 @@ io.on("connection",function(socket)
       io.sockets.emit("server-send-listuser",mangUsers)
     }
   })
+  // bắt sự kiện logou của user 
   socket.on("logout",function()
   {
     console.log("đã vào")
@@ -47,10 +48,22 @@ io.on("connection",function(socket)
     socket.broadcast.emit("server-send-listuser",mangUsers);
     console.log(mangUsers);
   })
-  
+  //  gửi lại tin nhắn cho tất cả người tham gia user 
   socket.on("user-send-mes",function(data)
   {
     io.sockets.emit("server-send-mes",{username : socket.username , content : data})
+  })
+  // bắt sự kiện user đang gõ phím 
+  socket.on("user-keyboard",function()
+  {
+    var data = socket.username + " đang gõ chữ ";
+    io.sockets.emit("user-action-keyboard",data)
+  })
+
+  socket.on("user-keyboard-out",function()
+  {
+    console.log(socket.username + "ngưng nhập ");
+    
   })
 })
 

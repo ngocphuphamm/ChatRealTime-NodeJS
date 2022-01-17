@@ -47,4 +47,25 @@ $(document).ready(function () {
     {
         $("#listMessages").append("<div class='ms'>" + data.username+ ":" + data.content +  "</div>")
     })
+
+    // bắt sự kiện click con chuột vào hiển thị  ai đó đang nhập 
+    $("#txtMessages").focusin(function()
+    {
+        socket.emit("user-keyboard");
+
+    })
+    $("#txtMessages").focusout(function()
+    {
+        socket.emit("user-keyboard-out");
+       
+    })
+    socket.on("user-action-keyboard",function(data)
+    {
+        $("#notification").html(data);
+    })
+
+    socket.on("user-action-keyboard-out",function()
+    {
+        $("#notification").hide();
+    })
 });
